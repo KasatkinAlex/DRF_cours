@@ -3,13 +3,13 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from habit.models import Habit
 from habit.paginators import MyPagination
-from habit.serializer import HabitSerializer
+from habit.serializer import HabitSerializer, HabitCreateSerializer
 from users.permissions import IsOwner
 
 
 class HabitCreateAPIView(generics.CreateAPIView):
     queryset = Habit.objects.all()
-    serializer_class = HabitSerializer
+    serializer_class = HabitCreateSerializer
     # permission_classes = (IsAuthenticated, )  # зарегистрированный пользователь
 
     def perform_create(self, serializer):
@@ -47,7 +47,7 @@ class HabitRetrieveAPIView(generics.RetrieveAPIView):
 class HabitUpdateAPIView(generics.UpdateAPIView):
     """Изменение привычки."""
     queryset = Habit.objects.all()
-    serializer_class = HabitSerializer
+    serializer_class = HabitCreateSerializer
     permission_classes = (IsOwner, )
 
 

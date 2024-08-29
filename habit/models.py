@@ -23,7 +23,7 @@ class Habit(models.Model):
     place = models.CharField(max_length=100, blank=True, null=True, verbose_name="Место выполнения")
     time = models.TimeField(blank=True, null=True, verbose_name="Время выполнения")
     action = models.CharField(max_length=100, verbose_name="Действие", blank=True, null=True,)
-    habit_is_pleasant = models.BooleanField(default=True, verbose_name="Признак приятной привычки")
+    habit_is_pleasant = models.BooleanField(verbose_name="Признак приятной привычки")
     connection_habit = models.ForeignKey("self", on_delete=models.CASCADE,
                                          blank=True, null=True,
                                          verbose_name="Связанная привычка", related_name="habit_connect")
@@ -33,8 +33,7 @@ class Habit(models.Model):
                                     verbose_name="Продолжительность выполнения (в сукундах)")
     is_published = models.BooleanField(default=True, verbose_name="Признак публичности")
     reward = models.CharField(
-        max_length=100, verbose_name="Вознаграждение", blank=True, null=True
-    )
+        max_length=100, verbose_name="Вознаграждение", blank=True, null=True)
 
     def __str__(self):
         return f"Действие: {self.action} (создатель {self.owner})"
