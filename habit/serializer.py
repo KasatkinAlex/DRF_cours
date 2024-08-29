@@ -1,7 +1,10 @@
 from rest_framework import serializers
 
 from habit.models import Habit
-from habit.validators import TowFieldsValidator, TimeCheckValidator, HabitPleasantCheckValidator, PleasantHabitValidator
+from habit.validators import (TowFieldsValidator,
+                              TimeCheckValidator,
+                              HabitPleasantCheckValidator,
+                              PleasantHabitValidator)
 
 
 class HabitSerializer(serializers.ModelSerializer):
@@ -22,4 +25,3 @@ class HabitCreateSerializer(serializers.ModelSerializer):
             HabitPleasantCheckValidator('connection_habit'),
             PleasantHabitValidator('habit_is_pleasant')
         ]
-

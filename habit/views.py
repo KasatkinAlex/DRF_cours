@@ -1,5 +1,5 @@
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAuthenticated
 
 from habit.models import Habit
 from habit.paginators import MyPagination
@@ -10,7 +10,6 @@ from users.permissions import IsOwner
 class HabitCreateAPIView(generics.CreateAPIView):
     queryset = Habit.objects.all()
     serializer_class = HabitCreateSerializer
-    # permission_classes = (IsAuthenticated, )  # зарегистрированный пользователь
 
     def perform_create(self, serializer):
         """Автоматическое присвоение создатель привычки"""
@@ -41,7 +40,6 @@ class HabitRetrieveAPIView(generics.RetrieveAPIView):
     """Детальная информация."""
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
-    permission_classes = (IsOwner | IsAdminUser)
 
 
 class HabitUpdateAPIView(generics.UpdateAPIView):

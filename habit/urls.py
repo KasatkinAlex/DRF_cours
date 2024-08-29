@@ -1,9 +1,12 @@
 from django.urls import path
-from rest_framework.permissions import AllowAny
 
 from habit.apps import HabitConfig
-from habit.views import HabitListAPIView, HabitRetrieveAPIView, HabitCreateAPIView, HabitUpdateAPIView, \
-    HabitDestroyAPIView, HabitListPublishedAPIView
+from habit.views import (HabitListAPIView,
+                         HabitRetrieveAPIView,
+                         HabitCreateAPIView,
+                         HabitUpdateAPIView,
+                         HabitDestroyAPIView,
+                         HabitListPublishedAPIView)
 
 app_name = HabitConfig.name
 
@@ -12,6 +15,8 @@ urlpatterns = [
     path('', HabitListPublishedAPIView.as_view(), name='habit_list_published'),
     path('<int:pk>/', HabitRetrieveAPIView.as_view(), name='habit_detail'),
     path('create/', HabitCreateAPIView.as_view(), name='habit_create'),
-    path('<int:pk>/update/', HabitUpdateAPIView.as_view(), name='habit_update'),
-    path('<int:pk>/delete/', HabitDestroyAPIView.as_view(), name='habit_delete'),
+    path('<int:pk>/update/', HabitUpdateAPIView.as_view(),
+         name='habit_update'),
+    path('<int:pk>/delete/', HabitDestroyAPIView.as_view(),
+         name='habit_delete'),
 ]
