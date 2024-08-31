@@ -64,6 +64,7 @@ class PleasantHabitValidator:
             our_value = dict(value)
             if (our_value.get("reward") is not None
                     or our_value.get("connection_habit") is not None):
-                raise ValidationError("У приятной привычки не может"
-                                      " быть вознаграждения или "
-                                      "связанной привычки")
+                raise serializers.ValidationError(
+                    "У приятной привычки не может"
+                    " быть вознаграждения или "
+                    "связанной привычки")
