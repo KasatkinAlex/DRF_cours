@@ -10,6 +10,7 @@ from users.permissions import IsOwner
 class HabitCreateAPIView(generics.CreateAPIView):
     queryset = Habit.objects.all()
     serializer_class = HabitCreateSerializer
+    permission_classes = (IsAuthenticated, )
 
     def perform_create(self, serializer):
         """Автоматическое присвоение создатель привычки"""
@@ -19,7 +20,7 @@ class HabitCreateAPIView(generics.CreateAPIView):
 class HabitListAPIView(generics.ListAPIView):
     serializer_class = HabitSerializer
     pagination_class = MyPagination
-    permission_classes = (IsOwner, )
+    permission_classes = (IsOwner, IsAuthenticated,)
 
     def get_queryset(self):
         user = self.request.user
@@ -46,11 +47,11 @@ class HabitUpdateAPIView(generics.UpdateAPIView):
     """Изменение привычки."""
     queryset = Habit.objects.all()
     serializer_class = HabitCreateSerializer
-    permission_classes = (IsOwner, )
+    permission_classes = (IsOwner, IsAuthenticated, )
 
 
 class HabitDestroyAPIView(generics.DestroyAPIView):
     """Удаление привычки."""
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
-    permission_classes = (IsOwner, )
+    permission_classes = (IsOwner, IsAuthenticated, )

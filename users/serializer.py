@@ -14,4 +14,4 @@ class UserSerializerList(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ("email", "phone", "avatar")
+        fields = ("email", "phone", "avatar", "tg_chat_id")
