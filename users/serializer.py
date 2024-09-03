@@ -9,6 +9,11 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = "__all__"
 
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation["password"] = "Пароль захеширован"
+        return representation
+
 
 class UserSerializerList(serializers.ModelSerializer):
 
