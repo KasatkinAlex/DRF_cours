@@ -20,6 +20,8 @@ services:
       interval: 10s
       retries: 5
       timeout: 5s
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
 
   app:
     build: .
